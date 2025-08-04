@@ -1,3 +1,6 @@
+# Claude Code Locals
+.claude/settings.local.json
+
 # Logs
 logs/
 *.log
@@ -13,7 +16,6 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.backup
-.mcp.json
 
 # TypeScript
 dist/

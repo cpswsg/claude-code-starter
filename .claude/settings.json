@@ -2,11 +2,11 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
-      "Bash(cat:*)", 
-      "Bash(curl:*)", 
-      "Bash(mkdir:*)", 
-      "Bash(find:*)", 
-      "Bash(ls:*)", 
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
       "Bash(cp:*)"
     ],
     "deny": []
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/log_hook_event.py"
           },
           {
             "type": "command",
@@ -33,7 +33,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/pre_tool_use.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
           }
         ]
       }
@@ -44,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/log_hook_event.py"
           }
         ]
       }
@@ -55,7 +59,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/log_hook_event.py"
           },
           {
             "type": "command",
@@ -70,7 +74,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/log_hook_event.py"
           },
           {
             "type": "command",
@@ -85,7 +89,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "afplay -v 0.7 docs/ai/sounds/subagent-stop.mp3"
+            "command": "afplay -v 0.7 .claude/sounds/subagent-stop.mp3"
           }
         ]
       }
@@ -96,7 +100,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/log-hook-event.sh"
+            "command": "python3 .claude/hooks/log_hook_event.py"
           }
         ]
       }

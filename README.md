@@ -9,7 +9,7 @@ A comprehensive starter template for setting up Claude Code with optimal configu
 ### Option 1: Use as Template
 ```bash
 # Create a new project from this template
-gh repo create my-project --template cswain/claude-code-starter
+gh repo create my-project --template cpswsg/claude-code-starter
 cd my-project
 
 # Run the interactive setup
@@ -19,7 +19,7 @@ claude setup-project
 ### Option 2: Add to Existing Project
 ```bash
 # Clone into your existing project
-git clone https://github.com/cswain/claude-code-starter.git temp-starter
+git clone https://github.com/cpswsg/claude-code-starter.git temp-starter
 cp -r temp-starter/.claude ./
 cp temp-starter/.mcp.json ./
 cp temp-starter/CLAUDE.md.template ./
@@ -289,6 +289,6 @@ Contributions welcome! This starter kit improves with community input:
 
 ## 📞 Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/cswain/claude-code-starter/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/cswain/claude-code-starter/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/cpswsg/claude-code-starter/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/cpswsg/claude-code-starter/discussions)
 - 📖 **Documentation**: [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code)

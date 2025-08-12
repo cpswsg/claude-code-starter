@@ -1,0 +1,89 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(node:*)",
+      "Bash(git:*)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*.test.*)",
+      "Bash(rm:*.spec.*)",
+      "WebFetch(domain:docs.*)",
+      "WebFetch(domain:api.*)",
+      "Write(**/test/**)",
+      "Write(**/*.test.*)",
+      "Write(**/*.spec.*)",
+      "Write(**/src/**)"
+    ],
+    "deny": [
+      "Write(**/.env)",
+      "Edit(**/.env)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/pre_tool_use_balanced.py"
+          },
+          {
+            "type": "command", 
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash(npm:install)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Dependencies updated - consider running npm audit'"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ]
+  }
+}

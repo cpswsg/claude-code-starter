@@ -1,0 +1,107 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip:*)",
+      "Bash(poetry:*)",
+      "Bash(pipenv:*)",
+      "Bash(pytest:*)",
+      "Bash(uvicorn:*)",
+      "Bash(alembic:*)",
+      "Bash(git:*)",
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "WebFetch(domain:docs.*)",
+      "WebFetch(domain:api.*)",
+      "Write(**/tests/**)",
+      "Write(**/*_test.py)",
+      "Write(**/test_*.py)",
+      "Write(**/app/**)",
+      "Write(**/src/**)"
+    ],
+    "deny": [
+      "Bash(pip:uninstall:*)",
+      "Write(**/.env)",
+      "Edit(**/.env)",
+      "Write(**/migrations/**)",
+      "Edit(**/migrations/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/pre_tool_use_balanced.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash(pip:install)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Dependencies updated - consider running pip-audit for security check'"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(poetry:add)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Poetry dependencies updated - run poetry show --outdated to check for updates'"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/log_hook_event.py"
+          }
+        ]
+      }
+    ]
+  }
+}

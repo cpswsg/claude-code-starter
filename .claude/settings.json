@@ -48,6 +48,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "python3 .claude/hooks/post_tool_use.py"
+          },
+          {
+            "type": "command",
             "command": "python3 .claude/hooks/log_hook_event.py"
           }
         ]
@@ -98,6 +102,10 @@
       {
         "matcher": "",
         "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/user_prompt_submit.py"
+          },
           {
             "type": "command",
             "command": "python3 .claude/hooks/log_hook_event.py"

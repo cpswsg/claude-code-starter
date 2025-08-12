@@ -1,32 +1,61 @@
-# Claude Code Starter
+# Claude Code Starter Kit
 
 ## Overview
 
-Claude Code Starter is a template project designed to streamline development workflows, optimize performance, and enhance developer experience. It provides a structured framework for creating, managing, and optimizing Claude sub-agents, hooks, and commands.
+A comprehensive starter template for setting up Claude Code with optimal configurations, intelligent agents, and productivity-enhancing workflows. This kit provides everything you need to quickly bootstrap Claude Code for any project type.
 
-## Features
+## 🚀 Quick Start
 
-### Sub-Agent System
+### Option 1: Use as Template
+```bash
+# Create a new project from this template
+gh repo create my-project --template cswain/claude-code-starter
+cd my-project
 
-The project includes pre-configured sub-agents specialized in various domains:
+# Run the interactive setup
+claude setup-project
+```
 
-- **PHP Pro**: High-performance PHP development with modern idiomatic patterns.
-- **Performance Engineer**: Application profiling, load testing, and optimization.
-- **UI/UX Designer**: User-centered design and accessibility.
-- **Error Detective**: Log analysis and debugging.
-- **DX Optimizer**: Developer experience improvement.
-- **Content Marketer**: SEO-optimized content creation.
-- **Meta Agent**: Creation of new sub-agent configurations.
+### Option 2: Add to Existing Project
+```bash
+# Clone into your existing project
+git clone https://github.com/cswain/claude-code-starter.git temp-starter
+cp -r temp-starter/.claude ./
+cp temp-starter/.mcp.json ./
+cp temp-starter/CLAUDE.md.template ./
+rm -rf temp-starter
 
-### Hooks
+# Customize for your project
+claude setup-project
+```
 
-Custom hooks are defined to automate tasks and enhance workflows:
+### Option 3: Manual Setup
+1. Copy the `.claude/` directory to your project
+2. Copy `.mcp.json` for MCP server configuration
+3. Copy `CLAUDE.md.template` and customize it as `CLAUDE.md`
+4. Copy `.claude/settings.template.json` and customize it as `.claude/settings.json`
 
-- **PreCompact**: Executes commands before compacting with audio notification.
-- **PreToolUse** and **PostToolUse**: Logs tool usage events.
-- **SessionStart** and **Stop**: Plays sounds and logs session events.
-- **SubagentStop**: Handles sub-agent termination with audio notification.
-- **UserPromptSubmit**: Logs user prompt submissions.
+## 🎯 What You Get
+
+### Intelligent Agent Library
+Pre-configured specialists for any project type:
+- **🏗️ Project Initializer**: Intelligent project setup and tech stack configuration
+- **⚡ DX Optimizer**: Development workflow optimization and automation
+- **🔍 Error Detective**: Advanced debugging and log analysis
+- **🎨 UI/UX Designer**: User interface design and accessibility
+- **⚙️ Performance Engineer**: Performance monitoring and optimization
+- **📝 Content Marketer**: Documentation and content creation
+- **🧠 Meta Agent**: Create and customize new agents
+- **💻 PHP Pro**: PHP-specific development patterns
+
+### Production-Ready Hook System
+Includes both secure and developer-friendly options:
+- **🔒 Security Validation**: Two hook options - restrictive (secure) or balanced (developer-friendly)
+- **📊 Usage Analytics**: Comprehensive logging and statistics with `analyze_hooks.py`
+- **🔔 Audio Notifications**: Optional sound feedback for workflow events (cross-platform customizable)
+- **⏰ Session Tracking**: Development time and productivity metrics
+
+> **Note**: The default security hook is quite restrictive. See `HOOK_UPGRADE.md` for a more balanced alternative that warns instead of blocking common operations like `rm -rf node_modules`.
 
 #### Python Hook Scripts
 
@@ -122,27 +151,144 @@ To add additional MCP servers:
 claude mcp add <server-name> -s project <command> [args...]
 ```
 
-## Getting Started
+## 📋 Configuration Guide
 
-1. Clone the repository.
-2. Review the `.claude/settings.json` file to customize permissions and hooks.
-3. Explore the `.claude/agents/` directory to understand sub-agent capabilities.
-4. Use the commands in `.claude/commands/` to optimize workflows and analyze the project.
-5. Check the `CLAUDE.md` file for project-specific instructions and context.
-6. Verify MCP server connectivity with `claude mcp list`.
+### 1. Essential Setup
+```bash
+# Copy and customize the main configuration template
+cp CLAUDE.md.template CLAUDE.md
+# Edit CLAUDE.md with your project-specific information
 
-## Contributing
+# Copy and customize settings template
+cp .claude/settings.template.json .claude/settings.json
+# Edit settings.json for your security and tool preferences
+```
 
-Contributions are welcome! Please follow the guidelines below:
+### 2. Project-Specific Customization
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Submit a pull request with a detailed description of your changes.
+**For Web Applications:**
+```json
+// In .claude/settings.json, add:
+"allow": [
+  "Bash(npm:*)", "Bash(yarn:*)", "Bash(node:*)",
+  "Bash(git:*)", "WebFetch(*)"
+]
+```
 
-## License
+**For Python Projects:**
+```json
+// In .claude/settings.json, add:
+"allow": [
+  "Bash(python:*)", "Bash(pip:*)", "Bash(pytest:*)",
+  "Bash(poetry:*)", "Bash(git:*)"
+]
+```
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+**For API Development:**
+```json
+// In .claude/settings.json, add:
+"allow": [
+  "Bash(curl:*)", "Bash(docker:*)", "WebFetch(*)",
+  "Bash(git:*)"
+]
+```
 
-## Contact
+### 3. Available Commands
 
-For questions or support, please contact the repository owner or open an issue on GitHub.
+Use these built-in commands to optimize your workflow:
+```bash
+# Interactive project setup and configuration
+claude setup-project [project-type]
+
+# Analyze and recommend optimal tech stack
+claude detect-stack [focus-area]
+
+# Optimize development workflow and tooling
+claude optimize-workflow [focus-area]
+
+# Generate comprehensive documentation
+claude generate-docs [doc-type]
+
+# Analyze project structure and organization
+claude analyze-project [focus-area]
+
+# Monitor Claude Code usage and costs
+claude ccusage-daily
+```
+
+## 🛠️ Customization Examples
+
+### Adding Project-Specific Agents
+```bash
+# Use the meta-agent to create custom agents
+claude meta-agent "Create a database migration agent for my Rails project"
+```
+
+### Custom Hook Development
+```python
+# Add to .claude/hooks/custom_hook.py
+def validate_database_migrations():
+    # Your custom validation logic
+    pass
+```
+
+### Environment-Specific Settings
+```bash
+# Development environment
+cp .claude/settings.template.json .claude/settings.local.json
+# Customize settings.local.json for your local development needs
+```
+
+## 📖 Templates Included
+
+- **`CLAUDE.md.template`**: Comprehensive project context template
+- **`.claude/settings.template.json`**: Annotated settings with examples
+- **Agent Templates**: Ready-to-use agent configurations
+- **Command Templates**: Project setup and optimization commands
+- **Hook Templates**: Security and monitoring automation
+
+## 🔧 Advanced Usage
+
+### Multi-Language Projects
+```bash
+# Configure for polyglot projects
+claude setup-project fullstack
+# This will detect and configure multiple language support
+```
+
+### Team Collaboration
+```bash
+# Share configurations across team
+git add .claude/ .mcp.json
+git commit -m "Add Claude Code configuration"
+# Team members get consistent Claude Code setup
+```
+
+### CI/CD Integration
+```yaml
+# .github/workflows/claude-analysis.yml
+name: Claude Code Analysis
+on: [push, pull_request]
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Claude Analysis
+        run: claude analyze-project ci-cd
+```
+
+## 🤝 Contributing
+
+Contributions welcome! This starter kit improves with community input:
+
+- **Agent Templates**: Submit new agent configurations
+- **Hook Enhancements**: Improve security and monitoring
+- **Documentation**: Better examples and guides
+- **Project Templates**: Add support for new frameworks
+
+## 📞 Support
+
+- 🐛 **Issues**: [GitHub Issues](https://github.com/cswain/claude-code-starter/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/cswain/claude-code-starter/discussions)
+- 📖 **Documentation**: [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code)
